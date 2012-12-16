@@ -50,6 +50,13 @@ class Student(var name: String, var lastName: String, var age: Option[Int], var 
   import org.squeryl.PrimitiveTypeMode._
   
   def dummyKey = compositeKey(age, addressId)
+
+  override def equals(obj: Any) = obj match {
+    case s: Student =>
+      name == s.name && lastName == s.lastName && age == s.age && gender == s.gender &&
+        addressId == s.addressId && isMultilingual == s.isMultilingual && id == s.id
+    case _ => false
+  }
 }
 
 case class Course2(id: Int, name: String, confirmed: Boolean, occVersionNumber: Int)
